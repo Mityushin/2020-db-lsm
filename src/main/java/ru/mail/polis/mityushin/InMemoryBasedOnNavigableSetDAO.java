@@ -48,6 +48,28 @@ public class InMemoryBasedOnNavigableSetDAO implements DAO {
     public void close() throws IOException {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof InMemoryBasedOnNavigableSetDAO)) return false;
+
+        InMemoryBasedOnNavigableSetDAO that = (InMemoryBasedOnNavigableSetDAO) o;
+
+        return set.equals(that.set);
+    }
+
+    @Override
+    public int hashCode() {
+        return set.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "InMemoryBasedOnNavigableSetDAO{" +
+                "set=" + set +
+                '}';
+    }
+
     private Record fromKey(ByteBuffer key) {
         return Record.of(key, EMPTY_VALUE);
     }
